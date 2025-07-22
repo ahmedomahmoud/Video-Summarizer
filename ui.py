@@ -4,30 +4,25 @@ import os
 from summarize import summarize_srt , clip_video
 
 def process_video(video_file, num_shorts):
-
-    # check for video restrictions
     errors = check_video_restrictions(video_file)
     if errors:
-        return errors
+        print(f"Video restrictions not met: {errors}")
+        return []
+
     print(f"Processing video: {video_file} to generate {num_shorts} shorts.")
     audio_path = extract_audio(video_file)
-    
-    # getting audio file path
     print(f"Extracted audio saved at: {audio_path}")
-    print(f"Generated audio file: {audio_path}")
-
-    # transform auido to transcription
 
     srt_path = transcribe_and_save_srt(audio_path, output_srt_path="/home/ahmed/transcription.srt")
     print(f"Transcription saved as: {srt_path}")
 
-    # summarize the transcription
     highlights = summarize_srt(srt_path, num_highlights=num_shorts)
     print(f"Generated highlights: {highlights}")
 
-    # Prepare the output gallery
-    output_gallery= clip_video(video_file,"/home/ahmed/clips",highlights)
-    return []
+    clip_paths = clip_video(video_file, "/home/ahmed/linkdev/ws5/clips", highlights)
+    print(f"Generated clip files: {clip_paths}")
+
+    return  clip_paths
 
 with gr.Blocks() as demo:
     gr.Markdown("# AI Video Shorts Generator\n**Max 12 minutes, 20 MB limit per upload**")

@@ -22,4 +22,4 @@ def clip_video(input_path, output_dir, highlights):
     video.close()
 
 # result = summarize_srt("/home/ahmed/transcription.srt", num_highlights=2)
-# clip_video("/home/ahmed/Videos/Camera/Why Do We Dream_.mp4" , "/home/ahmed/clips/" , result)
+# clip_video("/home/ahmed/Videos/Camera/Why Do We Dream_.mp4" , "/home/ahmed/linkdev/ws5/clips" , result)

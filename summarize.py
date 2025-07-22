@@ -7,7 +7,7 @@ from moviepy.editor import VideoFileClip
 
 def clip_video(input_path, output_dir, highlights):
     video = VideoFileClip(input_path)
-
+    output_paths = []
     for i, h in enumerate(highlights["highlights"]):
         start = h["start"]
         end = h["end"]
@@ -19,8 +19,9 @@ def clip_video(input_path, output_dir, highlights):
         print(f"Saving: {output_path} | {summary}")
 
         clip.write_videofile(output_path, codec="libx264", audio_codec="aac")
-
+        output_paths.append(output_path)
     video.close()
+    return output_paths
 # Load API key from .env
 
 load_dotenv()
