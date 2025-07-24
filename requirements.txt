@@ -1,0 +1,9 @@
+openai
+srt
+python-dotenv
+moviepy
+pydub
+gradio
+
+# System dependency (must be installed separately):
+# ffmpeg - required for moviepy and pydub to work
